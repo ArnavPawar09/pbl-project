@@ -1,0 +1,482 @@
+/* ===============================
+   GLOBAL LAYOUT
+================================= */
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #dfe8f4;
+}
+
+
+.main-content {
+  margin-left: 220px;
+  width: calc(100% - 220px);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;   /* top and bottom spacing only */
+  box-sizing: border-box;
+}
+
+.card {
+  width: 100%;
+  max-width: 850px;
+  height: 650px;
+  background: white;
+  padding: 35px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+/* ===============================
+   CHAT HEADER
+================================= */
+
+
+.chat-header {
+  flex-shrink: 0;          /* Prevent shrinking */
+  margin-bottom: 15px;
+}
+
+.chat-header h2 {
+  margin: 0;
+  color: #1f4fa3;
+  font-size: 22px;
+}
+
+.chat-header p {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+
+/* ===============================
+   CHAT BOX
+================================= */
+
+.chat-box {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+
+/* Custom Scrollbar */
+.chat-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background: #b3c4e6;
+  border-radius: 10px;
+}
+
+/* ===============================
+   CHAT MESSAGES
+================================= */
+
+.message {
+  padding: 12px 16px;
+  border-radius: 16px;
+  max-width: 75%;
+  white-space: pre-line;
+  line-height: 1.5;
+  font-size: 14px;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.message.ai {
+  background: #d7e3f8;
+  align-self: flex-start;
+  color: #333;
+}
+
+.message.user {
+  background: #1f4fa3;
+  color: white;
+  align-self: flex-end;
+}
+
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+
+/* ===============================
+   SEVERITY BADGE
+================================= */
+
+.severity-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+/* ===============================
+   CONFIDENCE & REMEDY
+================================= */
+
+.confidence {
+  font-size: 12px;
+  margin-top: 6px;
+  color: #444;
+}
+
+.remedy {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #222;
+}
+
+/* ===============================
+   TYPING ANIMATION
+================================= */
+
+.typing span {
+  height: 8px;
+  width: 8px;
+  background: #1f4fa3;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 3px;
+  animation: bounce 1.3s infinite ease-in-out;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* ===============================
+   INPUT AREA
+================================= */
+
+.chat-input-area {
+  flex-shrink: 0;          /* Keep fixed height */
+  margin-top: 15px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+
+.input-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.chat-input-area input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: 0.2s ease;
+  box-sizing: border-box;
+}
+
+.chat-input-area button {
+  padding: 12px 22px;
+  background: #1f4fa3;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+
+/* ===============================
+   AUTO SUGGESTIONS
+================================= */
+
+.suggestions {
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 4px;
+  max-height: 140px;
+  overflow-y: auto;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
+
+.suggestion-item {
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.15s ease;
+}
+
+.suggestion-item:hover {
+  background: #eef3fb;
+}
+
+/* ===============================
+   PROFILE PAGE
+================================= */
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 15px auto;
+  background: linear-gradient(135deg, #1f4fa3, #4a79d8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profile-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-row label {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.profile-row input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f5f7fb;
+  font-size: 14px;
+}
+
+/* ===============================
+   REPORT UPLOAD PAGE
+================================= */
+
+.drop-zone {
+  margin-top: 20px;
+  padding: 40px;
+  border: 2px dashed #1f4fa3;
+  border-radius: 12px;
+  text-align: center;
+  background: #f4f7fc;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.drop-zone.active {
+  background: #e2ebfa;
+  border-color: #163b7a;
+}
+
+.drop-zone p {
+  margin: 0;
+  font-weight: 500;
+  color: #1f4fa3;
+}
+
+.drop-zone span {
+  display: block;
+  margin: 10px 0;
+  color: #666;
+}
+
+.drop-zone button {
+  padding: 8px 16px;
+  background: #1f4fa3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.drop-zone button:hover {
+  background: #163b7a;
+}
+
+.drop-zone small {
+  display: block;
+  margin-top: 10px;
+  color: #777;
+}
+
+.file-preview {
+  margin-top: 20px;
+  background: #eef3fb;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.upload-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #1f4fa3;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.upload-btn:hover {
+  background: #163b7a;
+  transform: translateY(-1px);
+}
+
+/* ===============================
+   SYMPTOM LOG PAGE
+================================= */
+
+.symptom-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.symptom-form input,
+.symptom-form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.symptom-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.date-time-row {
+  display: flex;
+  gap: 10px;
+}
+
+.symptom-form button {
+  padding: 10px 15px;
+  background: #1f4fa3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.symptom-form button:hover {
+  background: #163b7a;
+}
+
+.log-list {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.log-item {
+  background: #eef3fb;
+  padding: 15px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.log-description {
+  font-size: 13px;
+  color: #444;
+}
+
+.delete-btn {
+  margin-top: 8px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.delete-btn:hover {
+  background: #b02a37;
+}
+
+/**/
+.symptom-dropdown {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.symptom-dropdown:focus {
+  outline: none;
+  border-color: #1f4fa3;
+}
