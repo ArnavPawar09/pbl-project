@@ -35,7 +35,7 @@ It integrates a trained ML model with a Flask backend and a React frontend to pr
 - Scikit-learn
 - Pandas
 - Numpy
-- RandomForest / SVM (based on training)
+- SVM (currently) 
 
 ---
 
