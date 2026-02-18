@@ -41,7 +41,7 @@ selected_diseases = ['common cold',
 
 df = df[df["diseases"].isin(selected_diseases)]
 print(df["diseases"].value_counts())
-df = df.groupby("diseases").head(100)
+df = df.groupby("diseases").head(158)
 print(df["diseases"].value_counts())
 print(df.isnull().sum().sum())
 
