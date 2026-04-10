@@ -12,6 +12,7 @@ import pickle
 
 df = pd.read_csv("cleaned_dataset.csv")
 
+
 # separate features and targets
 X = df.drop("diseases", axis=1)
 y = df["diseases"]
@@ -25,7 +26,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # train SVM model
-model = SVC(kernel="linear", class_weight="balanced") # linear works well for binary data
+model = SVC(kernel="linear", class_weight="balanced", probability=True)
 model.fit(X_train, y_train)
 
 # accuracy/precision/f1-score/recall
@@ -45,7 +46,9 @@ sns.heatmap(cm, annot=True, fmt="d",
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.title("Confusion Matrix")
-plt.show()
+plt.tight_layout()
+plt.savefig("confusion_matrix_svm.png", dpi=150)
+print("Confusion matrix saved to confusion_matrix_svm.png")
 
 # saving trained model  
 with open("cura_model.pkl", "wb") as f:

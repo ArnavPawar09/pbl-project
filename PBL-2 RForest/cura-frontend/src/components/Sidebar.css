@@ -1,0 +1,32 @@
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: linear-gradient(180deg, #1f4fa3, #153d7a);
+  color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px;
+}
+
+.logo {
+  margin-bottom: 40px;
+  font-size: 20px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.sidebar a.active {
+  background: rgba(255, 255, 255, 0.2);
+}

@@ -9,6 +9,7 @@ with open("feature_columns.pkl", "rb") as f:
     feature_columns = pickle.load(f)
 
 disease_info = {
+    # --- Original 6 ---
     "common cold": {
         "remedy": "Drink plenty of fluids, take rest, and use steam inhalation if needed.",
         "severity": "mild"
@@ -32,7 +33,73 @@ disease_info = {
     "tonsillitis": {
         "remedy": "Warm salt water gargles, rest, and stay hydrated. Seek medical care if severe.",
         "severity": "moderate"
-    }
+    },
+    # --- Respiratory ---
+    "bronchitis": {
+        "remedy": "Rest, drink warm fluids, use a humidifier, and avoid irritants. See a doctor if cough persists.",
+        "severity": "moderate"
+    },
+    "pneumonia": {
+        "remedy": "Seek medical attention immediately. Rest, hydrate, and complete prescribed antibiotics.",
+        "severity": "severe"
+    },
+    "laryngitis": {
+        "remedy": "Rest your voice, stay hydrated, use throat lozenges, and avoid whispering.",
+        "severity": "mild"
+    },
+    "sinusitis": {
+        "remedy": "Use saline nasal spray, stay hydrated, apply warm compresses, and use steam inhalation.",
+        "severity": "mild"
+    },
+    # --- Infectious ---
+    "strep throat": {
+        "remedy": "Consult a doctor for antibiotics. Gargle with warm salt water and rest.",
+        "severity": "moderate"
+    },
+    "urinary tract infection": {
+        "remedy": "Drink plenty of water, avoid irritants, and consult a doctor for antibiotics.",
+        "severity": "moderate"
+    },
+    "ear infection (otitis media)": {
+        "remedy": "Apply a warm compress. See a doctor if pain persists; antibiotics may be needed.",
+        "severity": "moderate"
+    },
+    "viral pharyngitis": {
+        "remedy": "Rest, drink warm fluids, gargle with salt water. Usually resolves on its own.",
+        "severity": "mild"
+    },
+    # --- Digestive ---
+    "gastroenteritis": {
+        "remedy": "Stay hydrated with oral rehydration salts, eat bland foods, and rest.",
+        "severity": "moderate"
+    },
+    "indigestion": {
+        "remedy": "Eat smaller meals, avoid spicy/fatty foods, and try antacids if needed.",
+        "severity": "mild"
+    },
+    "gastritis": {
+        "remedy": "Avoid alcohol, spicy food, and NSAIDs. Eat small frequent meals. Consult a doctor.",
+        "severity": "moderate"
+    },
+    # --- Allergic ---
+    "seasonal allergies (hay fever)": {
+        "remedy": "Avoid allergens, use antihistamines, and try saline nasal rinse.",
+        "severity": "mild"
+    },
+    # --- Deficiency / Systemic ---
+    "vitamin b12 deficiency": {
+        "remedy": "Eat B12-rich foods (meat, eggs, dairy) or take supplements. Consult a doctor.",
+        "severity": "moderate"
+    },
+    "hypothyroidism": {
+        "remedy": "Consult an endocrinologist. Medication (levothyroxine) is usually required.",
+        "severity": "moderate"
+    },
+    # --- Pain ---
+    "sciatica": {
+        "remedy": "Apply hot/cold packs, gentle stretching, and OTC pain relief. See a doctor if persistent.",
+        "severity": "moderate"
+    },
 }
 
 
@@ -47,11 +114,14 @@ def predict_disease(selected_symptoms):
     input_df = pd.DataFrame([input_data])
 
     prediction = loaded_model.predict(input_df)[0]
-    probabilities = loaded_model.decision_function(input_df)
 
-    confidence = float(np.max(probabilities))
-    confidence_percent = round(abs(confidence) * 10, 2)  # scaled for demo
-
+    # Use predict_proba for a proper confidence percentage
+    try:
+        probabilities = loaded_model.predict_proba(input_df)[0]
+        confidence_percent = round(float(np.max(probabilities)) * 100, 2)
+    except AttributeError:
+        # Fallback for models without predict_proba
+        confidence_percent = 0.0
 
     # Get remedy and severity
     info = disease_info.get(prediction, {
