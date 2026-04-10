@@ -8,22 +8,22 @@
    CSS VARIABLES
 ================================= */
 :root {
-  --bg-primary: #f7f7f7;
+  --bg-primary: #f8fafc;
   --bg-card: #ffffff;
-  --bg-input: #f2f2f2;
-  --bg-hover: #ebebeb;
-  --text-primary: #1a1a1a;
-  --text-secondary: #666666;
-  --text-muted: #999999;
-  --border: #e0e0e0;
-  --border-light: #eeeeee;
-  --accent: #333333;
-  --accent-light: #555555;
+  --bg-input: #f1f5f9;
+  --bg-hover: #e2e8f0;
+  --text-primary: #334155;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --accent: #475569;
+  --accent-light: #64748b;
   --sidebar-width: 230px;
   --radius: 12px;
   --radius-sm: 8px;
-  --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.07);
   --transition: 0.2s ease;
 }
 
@@ -131,10 +131,12 @@ body {
 ================================= */
 .chat-box {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding-right: 8px; /* Room for scrollbar */
 }
 
 .chat-box::-webkit-scrollbar {
@@ -184,9 +186,7 @@ body {
 }
 
 .chat-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  overflow: hidden;
 }
 
 /* ===============================

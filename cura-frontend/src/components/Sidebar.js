@@ -30,11 +30,9 @@ function Sidebar({ session, guestMode, setGuestMode }) {
         <NavLink to="/symptoms">
           <span className="nav-icon">📋</span> Symptom Log
         </NavLink>
-        {!guestMode && (
-          <NavLink to="/profile">
-            <span className="nav-icon">👤</span> Profile
-          </NavLink>
-        )}
+        <NavLink to="/profile">
+          <span className="nav-icon">👤</span> Profile
+        </NavLink>
       </nav>
 
       <div className="sidebar-footer">

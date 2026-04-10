@@ -50,13 +50,7 @@ function AppContent({ session, guestMode, setGuestMode }) {
           <Route path="/symptoms" element={<SymptomLog />} />
           <Route
             path="/profile"
-            element={
-              guestMode ? (
-                <Navigate to="/auth" replace />
-              ) : (
-                <Profile session={session} />
-              )
-            }
+            element={<Profile session={session} />}
           />
         </Routes>
       </div>

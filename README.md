@@ -8,12 +8,11 @@ It integrates a trained ML model with a Flask backend and a React frontend to pr
 ## Features
 
 - Symptom-based disease prediction
-- Severity classification (Mild / Moderate / Severe)
+- Disease severity tag
+- Prediction confidence score
 - Remedy suggestions
-- Confidence score display
 - Interactive chatbot UI
 - Dropdown symptom selector
-- Auto suggestions while typing
 - Symptom logging system
 - Report upload interface (UI prototype)
 - Profile page (UI prototype)
@@ -24,18 +23,21 @@ It integrates a trained ML model with a Flask backend and a React frontend to pr
 
 ### Frontend
 - React.js
+- React Router
 - CSS (Custom UI Styling)
 - Fetch API
 
-### Backend
+### Backend & Database
 - Flask (Python)
 - Flask-CORS
+- Supabase (Database & Authentication)
 
-### Machine Learning
+### Machine Learning & AI
 - Scikit-learn
 - Pandas
 - Numpy
-- SVM (currently) 
+- Random Forest Classifier (currently)
+- Groq API (LLaMA 3.1 for Medical Chatbot Assistant)
 
 ---
 
@@ -45,13 +47,11 @@ It integrates a trained ML model with a Flask backend and a React frontend to pr
 2. Symptoms are converted into a binary feature vector.
 3. The trained ML model predicts:
    - Disease
-   - Severity
-   - Confidence score
 4. The backend sends results to frontend.
-5. The chatbot displays:
+5. The chatbot (powered by Groq/LLaMA API) displays:
    - Predicted Disease
-   - Severity badge
-   - Confidence percentage
+   - Disease Severity Tag
+   - Confidence Score
    - Suggested remedy
 
 ---
