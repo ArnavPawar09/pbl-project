@@ -3,6 +3,9 @@ from flask_cors import CORS
 from predictor import predict_disease
 from groq import Groq
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
